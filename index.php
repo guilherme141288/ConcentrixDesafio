@@ -17,7 +17,7 @@ echo $controller->create(nome: $nome, email: $email);
 // listagem de todos os usuários
 $usuarios = $controller->readAll();
 foreach ($usuarios as $usuario) {
-    echo $usuario['nome'] . ' - ' . $usuario['email'] . 'br';
+    echo $usuario['nome'] . ' - ' . $usuario['email'] . PHP_EOL ;
 }
 
 // else 
