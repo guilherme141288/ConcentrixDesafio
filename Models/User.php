@@ -41,9 +41,9 @@ class User {
         $query = "UPDATE " . $this->table_name . " SET nome = :nome, email = :email WHERE id = :id";
         $stmt = $this->conn->prepare($query);
 
-        $this->nome = htmlspecialchars(string: strip_tags(string: $this->nome));
+        $this->nome  = htmlspecialchars(string: strip_tags(string: $this->nome));
         $this->email = htmlspecialchars(string: strip_tags(string: $this->email));
-        $this->id = htmlspecialchars(string: strip_tags(string: $this->id));
+        $this->id    = htmlspecialchars(string: strip_tags(string: $this->id));
 
         $stmt->bindParam(':nome', $this->nome);
         $stmt->bindParam(':email', $this->email);
@@ -55,14 +55,23 @@ class User {
         return false;
     }
 
-    public function delete(): bool {
+
+
+    public function delete(): bool
+{
+    try {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(1, $this->id);
-
+        $stmt->bindParam(1, $this->id, PDO::PARAM_INT); 
         if ($stmt->execute()) {
             return true;
         }
         return false;
+    } catch (PDOException $e) {
+        // Log de erro ou tratamento personalizado, se necessário
+        echo "Erro ao deletar o registro: " . $e->getMessage();
+        return false;
     }
+}
+   
 }

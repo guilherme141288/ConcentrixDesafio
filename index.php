@@ -3,9 +3,9 @@ require_once 'Controller/UserController.php';
 
 $controller = new UserController();
 
-$nome = 'magos';
-$email = 'magos';
-$id = 3;
+$nome = 'pedro';
+$email = 'pedro@gmail.com';
+$id = 34;
 
 
 // criação de um novo usuário
@@ -17,7 +17,7 @@ echo $controller->create(nome: $nome, email: $email);
 // listagem de todos os usuários
 $usuarios = $controller->readAll();
 foreach ($usuarios as $usuario) {
-    echo $usuario['nome'] . ' - ' . $usuario['email'] . 'br';
+    echo $usuario['nome'] . ' - ' . $usuario['email'] . PHP_EOL ;
 }
 
 // else 
