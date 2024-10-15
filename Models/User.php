@@ -16,7 +16,7 @@ class User {
         $query = "INSERT INTO " . $this->table_name . " SET nome=:nome, email=:email, data_criacao=:data_criacao";
         $stmt = $this->conn->prepare($query);
 
-        $this->nome = htmlspecialchars(string: strip_tags(string: $this->nome));
+        $this->nome  = htmlspecialchars(string: strip_tags(string: $this->nome));
         $this->email = htmlspecialchars(string: strip_tags(string: $this->email));
         $this->data_criacao = htmlspecialchars(string: strip_tags(string: $this->data_criacao));
 
@@ -58,8 +58,9 @@ class User {
 
 
     public function delete(): bool
-{
+{   if (empty($id));
     try {
+        var_dump(value: $this->id);
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $this->id, PDO::PARAM_INT); 
@@ -67,6 +68,7 @@ class User {
             return true;
         }
         return false;
+        
     } catch (PDOException $e) {
         // Log de erro ou tratamento personalizado, se necessário
         echo "Erro ao deletar o registro: " . $e->getMessage();

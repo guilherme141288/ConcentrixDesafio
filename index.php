@@ -5,11 +5,11 @@ $controller = new UserController();
 
 $nome = 'pedro';
 $email = 'pedro@gmail.com';
-$id = 34;
+$id = 60;
 
 
 // criação de um novo usuário
-echo $controller->create(nome: $nome, email: $email);
+//echo $controller->create(nome: $nome, email: $email);
 
 
 // if alguma condição
